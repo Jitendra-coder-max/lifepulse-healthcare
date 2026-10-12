@@ -16,3 +16,50 @@ body {
   font-family: "Lato", sans-serif;
   background-color: #f5f5f5;
 }
+
+/* Keep the original 4:3 slide design while fitting it to smaller screens. */
+.slide-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide-canvas {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1024px;
+  height: 768px;
+  margin: 0;
+  transform: translateX(-50%) scale(var(--slide-scale, 1));
+  transform-origin: top center;
+}
+
+.slide-canvas > * {
+  width: 1024px;
+}
+
+@media (max-width: 1023px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* Avoid browser-default overflow and keep popup content within the viewport. */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 600px) {
+  .slide-viewport {
+    min-height: 0;
+  }
+}
